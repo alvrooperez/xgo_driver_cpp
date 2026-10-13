@@ -35,7 +35,24 @@ int main() {
         std::this_thread::sleep_for(std::chrono::milliseconds(200));
     }
 
+    // Test de velocidad corto (suave y seguro)
+    std::cout << "\n>>> Iniciando test de velocidad corto (1.5s adelante, 1.5s atras) <<<" << std::endl;
+    std::cout << "1. Avanzando a 0.08 m/s..." << std::endl;
+    robot.set_velocity(0.08, 0.0, 0.0);
+    std::this_thread::sleep_for(std::chrono::milliseconds(1500));
+
+    std::cout << "2. Parando..." << std::endl;
+    robot.stop();
+    std::this_thread::sleep_for(std::chrono::milliseconds(500));
+
+    std::cout << "3. Retrocediendo a -0.08 m/s..." << std::endl;
+    robot.set_velocity(-0.08, 0.0, 0.0);
+    std::this_thread::sleep_for(std::chrono::milliseconds(1500));
+
+    std::cout << "4. Parada final con seguridad." << std::endl;
+    robot.stop();
+
     robot.disconnect();
-    std::cout << "Test completado." << std::endl;
+    std::cout << "Test completado con exito." << std::endl;
     return 0;
 }
