@@ -54,17 +54,6 @@ if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/src/xgo_driver_node.cpp")
   )
 endif()
 
-# -----------------------------------------------------------------------------
-# 3. Tests y Benchmarks
-# -----------------------------------------------------------------------------
-if(BUILD_TESTING OR NOT DEFINED BUILD_TESTING)
-  add_executable(test_driver tests/test_driver.cpp)
-  target_link_libraries(test_driver xgo_driver)
-
-  add_executable(benchmark_driver benchmark/benchmark.cpp)
-  target_link_libraries(benchmark_driver xgo_driver)
-  target_compile_options(benchmark_driver PRIVATE -O3)
-endif()
 
 # -----------------------------------------------------------------------------
 # 4. Instalación y Exportación para ROS 2
@@ -78,6 +67,10 @@ install(TARGETS xgo_driver
 
 install(DIRECTORY include/
   DESTINATION include/
+)
+
+install(DIRECTORY config launch
+  DESTINATION share/${PROJECT_NAME}
 )
 
 ament_export_include_directories(include)

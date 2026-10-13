@@ -4,7 +4,7 @@
   <name>xgo_driver_cpp</name>
   <version>1.0.0</version>
   <description>Modern C++20 ROS 2 driver for the XGO Mini 2S robot dog</description>
-  <maintainer email="alvaro@todo.todo">alvaro</maintainer>
+  <maintainer email="aborbujom@gmail.com">alvaro</maintainer>
   <license>Apache-2.0</license>
 
   <buildtool_depend>ament_cmake</buildtool_depend>
