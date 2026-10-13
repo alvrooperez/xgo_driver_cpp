@@ -116,12 +116,8 @@ namespace xgo {
                 break;                                                                                                                                    
                                                                                                                                                         
             case RxState::MODE:                                                                                                                       
-                if (byte == 0x02) {
-                    mode_ = byte;
-                    state_ = RxState::ADDR;
-                }else {
-                    state_ = RxState::HEADER_1;
-                }
+                mode_ = byte;
+                state_ = RxState::ADDR;
                 break;                                                                                         
                  
             
