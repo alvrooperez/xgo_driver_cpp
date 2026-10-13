@@ -5,12 +5,12 @@
 
 int main() {
     xgo::XgoMini2s robot;
-    std::cout << "Conectando a /dev/serial0 a 115200..." << std::endl;
-    if (!robot.connect("/dev/serial0", 115200)) {
-        std::cerr << "Error abriendo el puerto serie /dev/serial0!" << std::endl;
+    std::cout << "Conectando a /dev/ttyAMA0 a 115200..." << std::endl;
+    if (!robot.connect("/dev/ttyAMA0", 115200)) {
+        std::cerr << "Error abriendo el puerto serie /dev/ttyAMA0!" << std::endl;
         return 1;
     }
-    std::cout << "¡Conectado con exito a /dev/serial0!" << std::endl;
+    std::cout << "¡Conectado con exito a /dev/ttyAMA0!" << std::endl;
 
     // Leer bateria
     if (auto bat = robot.read_battery()) {

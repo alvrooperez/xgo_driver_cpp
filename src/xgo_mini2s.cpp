@@ -242,9 +242,9 @@ namespace xgo {
         }
 
         auto start = std::chrono::steady_clock::now();
-        // Wait up to 100ms for incoming response packet
+        // Wait up to 500ms for incoming response packet
         while (std::chrono::duration_cast<std::chrono::milliseconds>(
-                   std::chrono::steady_clock::now() - start).count() < 100) {
+                   std::chrono::steady_clock::now() - start).count() < 500) {
             if (auto byte = serial_.read()) {
                 if (auto packet = parser_.parse_byte(*byte)) {
                     if (packet->reg == reg) {

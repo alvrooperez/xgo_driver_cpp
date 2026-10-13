@@ -36,7 +36,7 @@ class XgoDriverNode : public rclcpp::Node {
 
 public:
     XgoDriverNode() : Node("xgo_driver_node") {
-        std::string port = this->declare_parameter<std::string>("serial_port", "/dev/serial0");
+        std::string port = this->declare_parameter<std::string>("serial_port", "/dev/ttyAMA0");
         int baudrate = this->declare_parameter<int>("baudrate", 115200);
         double rate_hz = this->declare_parameter<double>("publish_rate_hz", 20.0);
         timeout_s_ = this->declare_parameter<double>("cmd_vel_timeout_sec", 0.5);

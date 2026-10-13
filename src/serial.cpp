@@ -58,10 +58,10 @@ namespace xgo {
         tty.c_cflag |= (CREAD | CLOCAL);
   
         // 6. Timeouts de lectura (en décimas de segundo)
-        // VMIN = 0: No waiting byets
-        // VTIME = 1: 100ms
+        // VMIN = 0: No waiting bytes
+        // VTIME = 5: 500ms
         tty.c_cc[VMIN]  = 0;
-        tty.c_cc[VTIME] = 1;
+        tty.c_cc[VTIME] = 5;
   
         // Configurate hardware
         if (tcsetattr(fd_, TCSANOW, &tty) != 0) {
