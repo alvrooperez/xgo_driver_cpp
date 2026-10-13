@@ -4,6 +4,7 @@
 #include <span>
 #include <cstring>
 #include <vector>
+#include <chrono>
 
 
 
@@ -235,22 +236,25 @@ namespace xgo {
         if (!serial_.is_open()) return std::nullopt; 
         parser_.reset();
 
-        auto tx=create_read_packet(reg,read_len);
+        auto tx = create_read_packet(reg, read_len);
         if (!serial_.send(tx)) {                                                                                                                      
             return std::nullopt;                                                                                                                      
         }
 
-        while (auto byte = serial_.read()) {                                                                                                          
-            if (auto packet = parser_.parse_byte(*byte)) {                                                                                            
-                // Comprobation                                                                      
-                if (packet->reg == reg) {                                                                                                             
-                    return packet; // Done                                                                                                        
-                }                                                                                                                                     
-            }                                                                                                                                         
-        }                                                                                                                                             
-                                                                                                                                                      
-        return std::nullopt;
+        auto start = std::chrono::steady_clock::now();
+        // Wait up to 100ms for incoming response packet
+        while (std::chrono::duration_cast<std::chrono::milliseconds>(
+                   std::chrono::steady_clock::now() - start).count() < 100) {
+            if (auto byte = serial_.read()) {
+                if (auto packet = parser_.parse_byte(*byte)) {
+                    if (packet->reg == reg) {
+                        return packet;
+                    }
+                }
+            }
+        }
 
+        return std::nullopt;
     }
 
     // Telemetry                                                                                                                                

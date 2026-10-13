@@ -33,6 +33,9 @@ namespace xgo {
             return false;
         }
 
+        // Restore blocking mode so VMIN/VTIME timeouts apply
+        fcntl(fd_, F_SETFL, 0);
+
         struct termios tty;                                                                                                                           
         if (tcgetattr(fd_, &tty) != 0) {                                                                                                              
             close();                                                                                                                                  
