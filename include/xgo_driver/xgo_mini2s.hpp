@@ -152,7 +152,7 @@ namespace xgo {
         ~XgoMini2s();
 
         // Conectivity                                                                                                                  
-        bool connect(const std::string& port = "/dev/ttyAMA0", int baudrate = 115200);                                                                
+        bool connect(const std::string& port = "/dev/serial0", int baudrate = 115200);                                                                
         void disconnect();                                                                                                                            
         bool is_connected() const {return serial_.is_open(); };                                                                                                                    
                                                                                                                                                       
