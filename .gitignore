@@ -1,0 +1,27 @@
+# Compilacion y Binarios
+build/
+install/
+log/
+*.o
+*.so
+*.a
+*.out
+*.exe
+
+# Ejecutables de tests/benchmarks generados localmente
+test_conversions
+benchmark_cpp
+
+# IDE y Editores
+.vscode/
+.idea/
+*.swp
+*~
+
+# Python
+__pycache__/
+*.py[cod]
+
+# Sistema y logs
+.DS_Store
+*.log
